@@ -5,6 +5,9 @@ from ._apis import (
     MatchApiV4,
     SpectatorApiV4,
     SummonerApiV4,
+    TftLeagueApi,
+    TftMatchApi,
+    TftSummonerApi,
     ThirdPartyCodeApiV4,
 )
 from .Handlers import (
@@ -89,6 +92,9 @@ class RiotWatcher(object):
         self._match = MatchApiV4(self._base_api)
         self._spectator = SpectatorApiV4(self._base_api)
         self._summoner = SummonerApiV4(self._base_api)
+        self._tft_league = TftLeagueApi(self._base_api)
+        self._tft_match = TftMatchApi(self._base_api)
+        self._tft_summoner = TftSummonerApi(self._base_api)
         self._third_party_code = ThirdPartyCodeApiV4(self._base_api)
         # todo: tournament-stub
         # todo: tournament
@@ -121,6 +127,10 @@ class RiotWatcher(object):
         return self._league
 
     @property
+    def tft_league(self):
+        return self._tft_league
+
+    @property
     def lol_status(self):
         """
         Interface to the LoLStatus Endpoint
@@ -137,6 +147,10 @@ class RiotWatcher(object):
         :rtype: MatchApiV4
         """
         return self._match
+
+    @property
+    def tft_match(self):
+        return self._tft_match
 
     @property
     def spectator(self):
@@ -164,6 +178,10 @@ class RiotWatcher(object):
         :rtype: SummonerApiV4
         """
         return self._summoner
+
+    @property
+    def tft_summoner(self):
+        return self._tft_summoner
 
     @property
     def third_party_code(self):
